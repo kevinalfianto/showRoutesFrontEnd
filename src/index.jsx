@@ -38,7 +38,7 @@ class App extends React.Component {
 
     componentDidMount() {
         //fetch initial marker data from database
-        fetch('http://localhost:3001')
+        fetch('https://warm-citadel-55978.herokuapp.com')
             .then(res => res.json())
             .then(pos => this.setState({ markers:pos }));
             
@@ -69,7 +69,7 @@ class App extends React.Component {
         //and number of marker must be 23 or bellow so google api can calculate route
         if (totalMarker !== nextMarkers.length && nextMarkers.length<24) {
             //make url to send data to express server to create new marker data
-            var url = 'http://localhost:3001/create?' + 'latitude=' + event.latLng.lat().toPrecision(10) +
+            var url = 'https://warm-citadel-55978.herokuapp.com/create?' + 'latitude=' + event.latLng.lat().toPrecision(10) +
                         '&longitude=' +  event.latLng.lng().toPrecision(10);
 
             fetch(url, {
@@ -107,7 +107,7 @@ class App extends React.Component {
         //if total number marker is the same as before, it means user click on spot without marker and will not be updated
         if (totalMarker !== nextMarkers.length) {
             //make url to send data to express server to delete a marker data
-            var url = 'http://localhost:3001/delete?' + 'latitude=' + event.position.lat.toPrecision(10) +
+            var url = 'https://warm-citadel-55978.herokuapp.com/delete?' + 'latitude=' + event.position.lat.toPrecision(10) +
                       '&longitude=' +  event.position.lng.toPrecision(10);
 
             fetch(url, {
